@@ -11,6 +11,6 @@ namespace MyPluginInterface
     {
         string Name { get; }
         string Author { get; }
-        void Transform(Bitmap app);
+        Bitmap Transform(Bitmap app);
     }
 }

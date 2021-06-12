@@ -50,7 +50,7 @@ namespace MainApp
         private void OnPluginClick(object sender, EventArgs args)
         {
             IPlugin plugin = plugins[((ToolStripMenuItem)sender).Text];
-            plugin.Transform((Bitmap)pictureBox1.Image);
+            pictureBox1.Image = plugin.Transform((Bitmap)pictureBox1.Image);
         }
         private void CreatePluginsMenu()
         {

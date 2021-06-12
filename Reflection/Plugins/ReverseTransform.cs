@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace Plugins
 {
-    [Version(1, 0)]
+    [Version(1, 1)]
     public class ReverseTransform : IPlugin
     {
         public string Name
         {
             get
             {
-                return "Переворот изображения";
+                return "Reverse image";
             }
         }
         public string Author
         {
             get
             {
-                return "Me";
+                return "AFKeel";
             }
         }
-        public void Transform(Bitmap bitmap)
+        public Bitmap Transform(Bitmap bitmap)
         {
             for (int i = 0; i < bitmap.Width; ++i)
                 for (int j = 0; j < bitmap.Height / 2; ++j)
@@ -34,6 +34,7 @@ namespace Plugins
                     bitmap.SetPixel(i, j, bitmap.GetPixel(i, bitmap.Height - j - 1));
                     bitmap.SetPixel(i, bitmap.Height - j - 1, color);
                 }
+            return bitmap;
         }
     }
 }
