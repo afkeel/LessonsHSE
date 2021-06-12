@@ -3,17 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
-namespace PluginInterface
+namespace MyPluginInterface
 {
-    public interface IPlugin
-    {
-        string Name { get; }
-        string Author { get; }
-        void Transform(Bitmap app);
-
-    }
     public class VersionAttribute : Attribute
     {
         public int Major { get; private set; }
@@ -24,5 +16,4 @@ namespace PluginInterface
             Minor = minor;
         }
     }
-
 }

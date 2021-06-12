@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PluginInterface;
+using MyPluginInterface;
 
 namespace MainApp
 {
@@ -34,7 +34,7 @@ namespace MainApp
                     Assembly assembly = Assembly.LoadFile(file);
                     foreach (Type type in assembly.GetTypes())
                     {
-                        Type iface = type.GetInterface("PluginInterface.IPlugin");
+                        Type iface = type.GetInterface("MyPluginInterface.IPlugin");
                         if (iface != null)
                         {
                             IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
