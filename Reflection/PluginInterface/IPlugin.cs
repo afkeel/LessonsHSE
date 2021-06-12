@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace PluginInterface
 {
-    interface IPlugin
+    public interface IPlugin
     {
         string Name { get; }
         string Author { get; }

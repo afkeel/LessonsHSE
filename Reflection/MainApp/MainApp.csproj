@@ -86,5 +86,11 @@
   <ItemGroup>
     <None Include="Resources\artem.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+      <Project>{408cffe5-1134-47a0-a5e6-96fcdfd5e286}</Project>
+      <Name>PluginInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
