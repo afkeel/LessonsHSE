@@ -26,14 +26,20 @@ namespace Plugins
         }
         public Bitmap Transform(Bitmap bitmap)
         {
-            for (int i = 0; i < bitmap.Width; ++i)
-                for (int j = 0; j < bitmap.Height / 2; ++j)
+            Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height);
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
                 {
-                    Color color = bitmap.GetPixel(i, j);
-                    bitmap.SetPixel(i, j, bitmap.GetPixel(i, bitmap.Height - j - 1));
-                    bitmap.SetPixel(i, bitmap.Height - j - 1, color);
+                    Color c = bitmap.GetPixel(i, j);
+                    int r = c.R;
+                    int g = c.G;
+                    int b = c.B;
+                    int avg = (r + g + b) / 3;
+                    newBitmap.SetPixel(i, j, Color.FromArgb(avg, avg, avg));
                 }
-            return bitmap;
+            }
+            return newBitmap;
         }
     }
 }
