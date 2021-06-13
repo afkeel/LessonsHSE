@@ -35,6 +35,6 @@ namespace Plugins
                     bitmap.SetPixel(i, bitmap.Height - j - 1, color);
                 }
             return bitmap;
-        }
+        }        
     }
 }

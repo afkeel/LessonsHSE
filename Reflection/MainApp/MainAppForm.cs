@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyPluginInterface;
+using Plugins;
 
 namespace MainApp
 {
@@ -47,10 +48,17 @@ namespace MainApp
                     MessageBox.Show("Ошибка загрузки плагина\n" + ex.Message);
                 }
         }
+        public static VersionAttribute GetAttribute(Type t)
+        {
+            return (VersionAttribute)Attribute.GetCustomAttribute(t, typeof(VersionAttribute));
+        }
         private void OnPluginClick(object sender, EventArgs args)
         {
             IPlugin plugin = plugins[((ToolStripMenuItem)sender).Text];
             pictureBox1.Image = plugin.Transform((Bitmap)pictureBox1.Image);
+
+            VersionAttribute atr = GetAttribute(typeof(ReverseTransform));
+            label1.Text = $"Name: {plugin.Name}, Author: {plugin.Author}, Version: {atr.Major}.{atr.Minor}";            
         }
         private void CreatePluginsMenu()
         {
