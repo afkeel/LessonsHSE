@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyPluginInterface;
-using Plugins;
 
 namespace MainApp
 {
@@ -39,7 +38,7 @@ namespace MainApp
                         if (iface != null)
                         {
                             IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
-                            plugins.Add(plugin.Name, plugin);
+                            plugins.Add(plugin.Name, plugin);                          
                         }
                     }
                 }
@@ -48,17 +47,19 @@ namespace MainApp
                     MessageBox.Show("Ошибка загрузки плагина\n" + ex.Message);
                 }
         }
-        public static VersionAttribute GetAttribute(Type t)
-        {
-            return (VersionAttribute)Attribute.GetCustomAttribute(t, typeof(VersionAttribute));
-        }
         private void OnPluginClick(object sender, EventArgs args)
         {
             IPlugin plugin = plugins[((ToolStripMenuItem)sender).Text];
             pictureBox1.Image = plugin.Transform((Bitmap)pictureBox1.Image);
 
-            VersionAttribute atr = GetAttribute(typeof(ReverseTransform));
-            label1.Text = $"Name: {plugin.Name}, Author: {plugin.Author}, Version: {atr.Major}.{atr.Minor}";            
+            VersionAttribute atr = 
+                (VersionAttribute)Attribute.GetCustomAttribute(plugin.GetType(), typeof(VersionAttribute));
+            string atrStr = "Version: 1.0";
+            if (atr!=null)
+            {
+                atrStr = $"Version: {atr.Major}.{atr.Minor}";
+            }
+            label1.Text = $"Name: {plugin.Name}, Author: {plugin.Author}, {atrStr}";            
         }
         private void CreatePluginsMenu()
         {

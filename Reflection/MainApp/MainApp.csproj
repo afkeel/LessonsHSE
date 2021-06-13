@@ -91,10 +91,6 @@
       <Project>{2e79ea62-466d-4d7f-b460-7d3369430ed6}</Project>
       <Name>MyPluginInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Plugins\Plugins.csproj">
-      <Project>{22523fe0-dc3e-4476-8a91-28f31519f85e}</Project>
-      <Name>Plugins</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\A.png" />
