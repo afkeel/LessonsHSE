@@ -31,6 +31,7 @@ namespace TestControlsApplication
         {
             this.components = new System.ComponentModel.Container();
             this.numberBox1 = new LabControls.NumberBox(this.components);
+            this.filePathSelect1 = new LabControls.FilePathSelect();
             this.SuspendLayout();
             // 
             // numberBox1
@@ -41,11 +42,20 @@ namespace TestControlsApplication
             this.numberBox1.Size = new System.Drawing.Size(194, 20);
             this.numberBox1.TabIndex = 0;
             // 
+            // filePathSelect1
+            // 
+            this.filePathSelect1.FileName = "LabControls.dll";
+            this.filePathSelect1.Location = new System.Drawing.Point(58, 184);
+            this.filePathSelect1.Name = "filePathSelect1";
+            this.filePathSelect1.Size = new System.Drawing.Size(437, 123);
+            this.filePathSelect1.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.filePathSelect1);
             this.Controls.Add(this.numberBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -57,6 +67,7 @@ namespace TestControlsApplication
         #endregion
 
         private LabControls.NumberBox numberBox1;
+        private LabControls.FilePathSelect filePathSelect1;
     }
 }
 

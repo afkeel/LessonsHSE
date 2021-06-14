@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilePathSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilePathSelect.Designer.cs">
+      <DependentUpon>FilePathSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumberBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FilePathSelect.resx">
+      <DependentUpon>FilePathSelect.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
