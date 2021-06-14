@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LabControls
 {
-    public partial class NumberBox : Form
+    public partial class NumberBox : TextBox
     {
         public NumberBox()
         {
