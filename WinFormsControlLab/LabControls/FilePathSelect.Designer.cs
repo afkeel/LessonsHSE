@@ -57,7 +57,7 @@ namespace LabControls
             this.Controls.Add(this.btnSelectPath);
             this.Controls.Add(this.txtPath);
             this.Name = "FilePathSelect";
-            this.Size = new System.Drawing.Size(437, 209);
+            this.Size = new System.Drawing.Size(451, 133);
             this.ResumeLayout(false);
             this.PerformLayout();
 

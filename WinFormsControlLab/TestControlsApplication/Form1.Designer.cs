@@ -30,25 +30,25 @@ namespace TestControlsApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.numberBox1 = new LabControls.NumberBox(this.components);
             this.filePathSelect1 = new LabControls.FilePathSelect();
+            this.numberBox1 = new LabControls.NumberBox(this.components);
             this.SuspendLayout();
-            // 
-            // numberBox1
-            // 
-            this.numberBox1.ForeColor = System.Drawing.Color.Red;
-            this.numberBox1.Location = new System.Drawing.Point(97, 116);
-            this.numberBox1.Name = "numberBox1";
-            this.numberBox1.Size = new System.Drawing.Size(194, 20);
-            this.numberBox1.TabIndex = 0;
             // 
             // filePathSelect1
             // 
             this.filePathSelect1.FileName = "LabControls.dll";
-            this.filePathSelect1.Location = new System.Drawing.Point(58, 184);
+            this.filePathSelect1.Location = new System.Drawing.Point(34, 50);
             this.filePathSelect1.Name = "filePathSelect1";
-            this.filePathSelect1.Size = new System.Drawing.Size(437, 123);
+            this.filePathSelect1.Size = new System.Drawing.Size(449, 123);
             this.filePathSelect1.TabIndex = 1;
+            // 
+            // numberBox1
+            // 
+            this.numberBox1.ForeColor = System.Drawing.Color.Red;
+            this.numberBox1.Location = new System.Drawing.Point(73, 24);
+            this.numberBox1.Name = "numberBox1";
+            this.numberBox1.Size = new System.Drawing.Size(194, 20);
+            this.numberBox1.TabIndex = 0;
             // 
             // Form1
             // 

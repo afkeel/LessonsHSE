@@ -42,6 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorControl.Designer.cs">
+      <DependentUpon>ColorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorTextBox.Designer.cs">
+      <DependentUpon>ColorTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="FilePathSelect.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -61,6 +73,9 @@
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ColorControl.resx">
+      <DependentUpon>ColorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FilePathSelect.resx">
       <DependentUpon>FilePathSelect.cs</DependentUpon>
     </EmbeddedResource>
