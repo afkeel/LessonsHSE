@@ -69,5 +69,10 @@ namespace MainApp
                 item.Click += OnPluginClick;
             }
         }
+
+        private void MainAppForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

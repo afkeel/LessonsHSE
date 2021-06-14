@@ -56,16 +56,17 @@ namespace MainApp
             // pictureBox1
             // 
             this.pictureBox1.Image = global::MainApp.Properties.Resources.artem;
-            this.pictureBox1.Location = new System.Drawing.Point(24, 50);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 64);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.Size = new System.Drawing.Size(225, 225);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 257);
+            this.label1.Location = new System.Drawing.Point(25, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 2;
@@ -81,6 +82,7 @@ namespace MainApp
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainAppForm";
             this.Text = "App";
+            this.Load += new System.EventHandler(this.MainAppForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
