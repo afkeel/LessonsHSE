@@ -12,7 +12,19 @@ namespace LabControls
 {
     public partial class ColorTextBox : TextBox
     {
-        public int Color { get; set; }
+        private int color;
+        public int Color
+        {
+            get
+            {
+                return color;
+            }
+            set
+            {
+                color = value;
+                Text = color.ToString();            
+            }
+        }
         public ColorTextBox()
         {
             InitializeComponent();
@@ -36,7 +48,7 @@ namespace LabControls
                     res = 255;
                     Text = "255";
                 }
-                this.Color = res;
+                Color = res;
             }
             base.OnTextChanged(e);
         }

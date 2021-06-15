@@ -107,7 +107,9 @@ namespace LabControls
             this.colorTextBoxB.Name = "colorTextBoxB";
             this.colorTextBoxB.Size = new System.Drawing.Size(39, 20);
             this.colorTextBoxB.TabIndex = 12;
+            this.colorTextBoxB.Text = "0";
             this.colorTextBoxB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colorTextBoxB.TextChanged += new System.EventHandler(this.colorTextBoxB_TextChanged);
             // 
             // colorTextBoxG
             // 
@@ -116,7 +118,9 @@ namespace LabControls
             this.colorTextBoxG.Name = "colorTextBoxG";
             this.colorTextBoxG.Size = new System.Drawing.Size(39, 20);
             this.colorTextBoxG.TabIndex = 11;
+            this.colorTextBoxG.Text = "0";
             this.colorTextBoxG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colorTextBoxG.TextChanged += new System.EventHandler(this.colorTextBoxG_TextChanged);
             // 
             // colorTextBoxR
             // 
@@ -125,6 +129,7 @@ namespace LabControls
             this.colorTextBoxR.Name = "colorTextBoxR";
             this.colorTextBoxR.Size = new System.Drawing.Size(39, 20);
             this.colorTextBoxR.TabIndex = 10;
+            this.colorTextBoxR.Text = "0";
             this.colorTextBoxR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colorTextBoxR.TextChanged += new System.EventHandler(this.colorTextBoxR_TextChanged);
             // 
