@@ -30,9 +30,18 @@ namespace TestControlsApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.colorControl1 = new LabControls.ColorControl();
             this.filePathSelect1 = new LabControls.FilePathSelect();
             this.numberBox1 = new LabControls.NumberBox(this.components);
             this.SuspendLayout();
+            // 
+            // colorControl1
+            // 
+            this.colorControl1.ColorFromArgb = System.Drawing.Color.Empty;
+            this.colorControl1.Location = new System.Drawing.Point(24, 250);
+            this.colorControl1.Name = "colorControl1";
+            this.colorControl1.Size = new System.Drawing.Size(326, 161);
+            this.colorControl1.TabIndex = 2;
             // 
             // filePathSelect1
             // 
@@ -55,6 +64,7 @@ namespace TestControlsApplication
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.colorControl1);
             this.Controls.Add(this.filePathSelect1);
             this.Controls.Add(this.numberBox1);
             this.Name = "Form1";
@@ -68,6 +78,7 @@ namespace TestControlsApplication
 
         private LabControls.NumberBox numberBox1;
         private LabControls.FilePathSelect filePathSelect1;
+        private LabControls.ColorControl colorControl1;
     }
 }
 
