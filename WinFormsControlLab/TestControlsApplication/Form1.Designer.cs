@@ -29,14 +29,15 @@ namespace TestControlsApplication
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.colorControl1 = new LabControls.ColorControl();
             this.filePathSelect1 = new LabControls.FilePathSelect();
-            this.numberBox1 = new LabControls.NumberBox();
+            this.numberBox1 = new LabControls.NumberBox(this.components);
             this.SuspendLayout();
             // 
             // colorControl1
             // 
-            this.colorControl1.ColorFromArgb = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.colorControl1.ColorFromArgb = System.Drawing.Color.Black;
             this.colorControl1.Location = new System.Drawing.Point(25, 231);
             this.colorControl1.Name = "colorControl1";
             this.colorControl1.Size = new System.Drawing.Size(326, 161);
