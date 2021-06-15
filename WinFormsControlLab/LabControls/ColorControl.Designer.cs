@@ -36,9 +36,9 @@ namespace LabControls
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.colorTextBoxBlue = new LabControls.ColorTextBox(this.components);
-            this.colorTextBoxGreen = new LabControls.ColorTextBox(this.components);
-            this.colorTextBoxRed = new LabControls.ColorTextBox(this.components);
+            this.colorTextBoxB = new LabControls.ColorTextBox(this.components);
+            this.colorTextBoxG = new LabControls.ColorTextBox(this.components);
+            this.colorTextBoxR = new LabControls.ColorTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,45 +98,44 @@ namespace LabControls
             this.pictureBox1.Size = new System.Drawing.Size(148, 128);
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
-            // colorTextBoxBlue
+            // colorTextBoxB
             // 
-            this.colorTextBoxBlue.Color = 0;
-            this.colorTextBoxBlue.Location = new System.Drawing.Point(86, 87);
-            this.colorTextBoxBlue.Name = "colorTextBoxBlue";
-            this.colorTextBoxBlue.Size = new System.Drawing.Size(60, 20);
-            this.colorTextBoxBlue.TabIndex = 7;
-            this.colorTextBoxBlue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colorTextBoxBlue.TextChanged += new System.EventHandler(this.colorTextBoxBlue_TextChanged);
+            this.colorTextBoxB.Color = 0;
+            this.colorTextBoxB.Location = new System.Drawing.Point(92, 87);
+            this.colorTextBoxB.Name = "colorTextBoxB";
+            this.colorTextBoxB.Size = new System.Drawing.Size(39, 20);
+            this.colorTextBoxB.TabIndex = 12;
+            this.colorTextBoxB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // colorTextBoxGreen
+            // colorTextBoxG
             // 
-            this.colorTextBoxGreen.Color = 0;
-            this.colorTextBoxGreen.Location = new System.Drawing.Point(86, 53);
-            this.colorTextBoxGreen.Name = "colorTextBoxGreen";
-            this.colorTextBoxGreen.Size = new System.Drawing.Size(60, 20);
-            this.colorTextBoxGreen.TabIndex = 6;
-            this.colorTextBoxGreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colorTextBoxGreen.TextChanged += new System.EventHandler(this.colorTextBoxGreen_TextChanged);
+            this.colorTextBoxG.Color = 0;
+            this.colorTextBoxG.Location = new System.Drawing.Point(92, 53);
+            this.colorTextBoxG.Name = "colorTextBoxG";
+            this.colorTextBoxG.Size = new System.Drawing.Size(39, 20);
+            this.colorTextBoxG.TabIndex = 11;
+            this.colorTextBoxG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // colorTextBoxRed
+            // colorTextBoxR
             // 
-            this.colorTextBoxRed.Color = 0;
-            this.colorTextBoxRed.Location = new System.Drawing.Point(86, 20);
-            this.colorTextBoxRed.Name = "colorTextBoxRed";
-            this.colorTextBoxRed.Size = new System.Drawing.Size(60, 20);
-            this.colorTextBoxRed.TabIndex = 5;
-            this.colorTextBoxRed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colorTextBoxRed.TextChanged += new System.EventHandler(this.colorTextBoxRed_TextChanged);
+            this.colorTextBoxR.Color = 0;
+            this.colorTextBoxR.Location = new System.Drawing.Point(92, 20);
+            this.colorTextBoxR.Name = "colorTextBoxR";
+            this.colorTextBoxR.Size = new System.Drawing.Size(39, 20);
+            this.colorTextBoxR.TabIndex = 10;
+            this.colorTextBoxR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colorTextBoxR.TextChanged += new System.EventHandler(this.colorTextBoxR_TextChanged);
             // 
             // ColorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.colorTextBoxB);
+            this.Controls.Add(this.colorTextBoxG);
+            this.Controls.Add(this.colorTextBoxR);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.colorTextBoxBlue);
-            this.Controls.Add(this.colorTextBoxGreen);
-            this.Controls.Add(this.colorTextBoxRed);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.label3);
@@ -157,9 +156,9 @@ namespace LabControls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
-        private ColorTextBox colorTextBoxRed;
-        private ColorTextBox colorTextBoxGreen;
-        private ColorTextBox colorTextBoxBlue;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private ColorTextBox colorTextBoxR;
+        private ColorTextBox colorTextBoxG;
+        private ColorTextBox colorTextBoxB;
     }
 }

@@ -37,7 +37,8 @@ namespace LabControls
                     Text = "255";
                 }
                 this.Color = res;
-            }     
+            }
+            base.OnTextChanged(e);
         }
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
