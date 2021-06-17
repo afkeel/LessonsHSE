@@ -29,7 +29,13 @@ namespace LabControls
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ColorTextBox
+            // 
+            this.MaxLength = 3;
+            this.ResumeLayout(false);
+
         }
 
         #endregion

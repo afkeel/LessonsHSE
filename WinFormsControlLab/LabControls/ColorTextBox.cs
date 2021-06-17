@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LabControls
-{
+{  
     public partial class ColorTextBox : TextBox
     {
-        private int color;
-        public int Color
+        private string color;
+        public string Color
         {
             get
             {
@@ -22,7 +22,7 @@ namespace LabControls
             set
             {
                 color = value;
-                Text = color.ToString();            
+                Text = color;         
             }
         }
         public ColorTextBox()
@@ -34,29 +34,71 @@ namespace LabControls
             container.Add(this);
             InitializeComponent();
         }
+        private string CheckText(int res)
+        {
+            string str = Text;
+            if (res < 0)
+            {
+                return "0";
+            }
+            else if (res > 255)
+            {
+                return "255";
+            }
+            return str;
+        }
         protected override void OnTextChanged(EventArgs e)
         {
-            if (int.TryParse(Text, out int res))
+            if (Text.Length!=0)
             {
-                if (res < 0)
+                if (GlobalVars.Basis == GlobalVars.Hex)
                 {
-                    res = 0;
-                    Text = "0";
+                    string str = Text;
+                    int numb = Convert.ToInt32(Text, GlobalVars.Hex);
+                    if (numb < 0)
+                    {
+                        str = "0";
+                    }
+                    else if (numb > 255)
+                    {
+                        str = "FF";
+                    }
+                    Color = str;
                 }
-                else if (res > 255)
+                else
                 {
-                    res = 255;
-                    Text = "255";
+                    if (int.TryParse(Text, out int res))
+                    {
+                        Color = CheckText(res);
+                    }
                 }
-                Color = res;
+            }
+            else
+            {
+                Color = "0";
             }
             base.OnTextChanged(e);
         }
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl((e.KeyChar)))
-                e.Handled = true;
-            base.OnKeyPress(e);
+            if (GlobalVars.Basis == GlobalVars.Hex)
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    char ch = char.ToLower(e.KeyChar);
+                    if (ch < 'a' || ch > 'f')
+                    {
+                        e.Handled = true;
+                    }  
+                }
+                base.OnKeyPress(e);
+            }
+            else
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                    e.Handled = true;
+                base.OnKeyPress(e);
+            }           
         }
     }
 }

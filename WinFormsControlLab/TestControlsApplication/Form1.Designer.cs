@@ -37,7 +37,7 @@ namespace TestControlsApplication
             // 
             // colorControl1
             // 
-            this.colorControl1.ColorFromArgb = System.Drawing.Color.Black;
+            this.colorControl1.ColorFromArgb = System.Drawing.Color.Empty;
             this.colorControl1.Location = new System.Drawing.Point(25, 231);
             this.colorControl1.Name = "colorControl1";
             this.colorControl1.Size = new System.Drawing.Size(326, 161);
