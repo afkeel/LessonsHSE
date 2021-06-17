@@ -34,18 +34,17 @@ namespace LabControls
             container.Add(this);
             InitializeComponent();
         }
-        private string CheckText(int res)
+        private string CheckVal(int res, string str)
         {
-            string str = Text;
             if (res < 0)
             {
                 return "0";
             }
             else if (res > 255)
             {
-                return "255";
+                return str;
             }
-            return str;
+            return Text;
         }
         protected override void OnTextChanged(EventArgs e)
         {
@@ -53,23 +52,14 @@ namespace LabControls
             {
                 if (GlobalVars.Basis == GlobalVars.Hex)
                 {
-                    string str = Text;
-                    int numb = Convert.ToInt32(Text, GlobalVars.Hex);
-                    if (numb < 0)
-                    {
-                        str = "0";
-                    }
-                    else if (numb > 255)
-                    {
-                        str = "FF";
-                    }
-                    Color = str;
+                    int numb = Convert.ToInt32(Text, GlobalVars.Hex);                  
+                    Color = CheckVal(numb, "FF");
                 }
                 else
                 {
                     if (int.TryParse(Text, out int res))
                     {
-                        Color = CheckText(res);
+                        Color = CheckVal(res, "255");
                     }
                 }
             }

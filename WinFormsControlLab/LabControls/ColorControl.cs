@@ -65,16 +65,16 @@ namespace LabControls
         {
             ColorConvertRGB(out int R, out int G, out int B);
             GlobalVars.Basis = GlobalVars.Dec;
-            colorTextBoxR.Color = R.ToString();
-            colorTextBoxG.Color = G.ToString();
-            colorTextBoxB.Color = B.ToString();
+            colorTextBoxR.Text = R.ToString();
+            colorTextBoxG.Text = G.ToString();
+            colorTextBoxB.Text = B.ToString();
         }
         private void radioButton2_Click(object sender, EventArgs e)
         {
             GlobalVars.Basis = GlobalVars.Hex;
-            colorTextBoxR.Color = string.Format("{0:X}", int.Parse(colorTextBoxR.Text));
-            colorTextBoxG.Color = string.Format("{0:X}", int.Parse(colorTextBoxG.Text));
-            colorTextBoxB.Color = string.Format("{0:X}", int.Parse(colorTextBoxB.Text));
+            colorTextBoxR.Text = string.Format("{0:X}", int.Parse(colorTextBoxR.Color));
+            colorTextBoxG.Text = string.Format("{0:X}", int.Parse(colorTextBoxG.Color));
+            colorTextBoxB.Text = string.Format("{0:X}", int.Parse(colorTextBoxB.Color));
         }
     }
     public static class GlobalVars
