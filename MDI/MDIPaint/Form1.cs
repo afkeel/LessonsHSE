@@ -12,6 +12,8 @@ namespace MDIPaint
 {
     public partial class MainForm : Form
     {
+        public static Color CurColor = Color.Black;
+        public static int CurWidth = 3;
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +26,12 @@ namespace MDIPaint
         {
             var f = new AboutPaint();
             f.ShowDialog();
+        }
+        private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Canvas frmChild = new Canvas();
+            frmChild.MdiParent = this;
+            frmChild.Show();
         }
     }
 }
