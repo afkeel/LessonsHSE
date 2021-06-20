@@ -20,5 +20,10 @@ namespace MDIPaint
         {
             Application.Exit();
         }
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f = new AboutPaint();
+            f.ShowDialog();
+        }
     }
 }
