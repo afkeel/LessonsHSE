@@ -13,7 +13,7 @@ namespace MDIPaint
     public partial class MainForm : Form
     {
         public static Color CurColor = Color.Black;
-        public static int CurWidth = 3;
+        public static int CurWidth = 1;
         public MainForm()
         {
             InitializeComponent();
@@ -30,8 +30,27 @@ namespace MDIPaint
         private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Canvas frmChild = new Canvas();
-            frmChild.MdiParent = this;
-            frmChild.Show();
+            frmChild.MdiParent = this;            
+            frmChild.Show();            
+            ((Canvas)ActiveMdiChild).CanvasWidth = frmChild.PictureBox1Width;
+            ((Canvas)ActiveMdiChild).CanvasHeight = frmChild.PictureBox1Height;
+        }
+        private void рисунокToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            размерХолстаToolStripMenuItem.Enabled = !(ActiveMdiChild == null);
+        }
+        private void размерХолстаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CanvasSize cs = new CanvasSize();
+            cs.TextBoxWidth = ((Canvas)ActiveMdiChild).CanvasWidth.ToString();
+            cs.TextBoxHeight = ((Canvas)ActiveMdiChild).CanvasHeight.ToString();
+            if (cs.ShowDialog() == DialogResult.OK)
+            {
+                if (int.TryParse(cs.TextBoxWidth, out int w))
+                    ((Canvas)ActiveMdiChild).CanvasWidth = w;
+                if (int.TryParse(cs.TextBoxHeight, out int h))
+                    ((Canvas)ActiveMdiChild).CanvasHeight = h;
+            }
         }
     }
 }
