@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,34 @@ namespace MDIPaint
         {
             InitializeComponent();
             bmp = new Bitmap(ClientSize.Width, ClientSize.Height);
+            pictureBox1.Image = bmp;       
+        }        
+        public Canvas(string FileName)
+        {
+            InitializeComponent();
+            bmp = new Bitmap(FileName);            
+            pictureBox1.Width = bmp.Width;
+            pictureBox1.Height = bmp.Height;
             pictureBox1.Image = bmp;
+        }
+        public void Save(string fp)
+        {
+            var newBitmap = new Bitmap(bmp);
+            bmp.Dispose();
+            newBitmap.Save(fp);
+            bmp = newBitmap;
+        }        
+        public string SaveAs()
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.AddExtension = true;
+            dlg.Filter = "Windows Bitmap (*.bmp)|*.bmp| Файлы JPEG (*.jpg)|*.jpg";
+            ImageFormat[] ff = { ImageFormat.Bmp, ImageFormat.Jpeg };
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                bmp.Save(dlg.FileName, ff[dlg.FilterIndex - 1]);
+            }
+            return dlg.FileName;
         }
         public int CanvasWidth
         {
@@ -70,14 +98,22 @@ namespace MDIPaint
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            try
             {
-                Graphics g = Graphics.FromImage(bmp);
-                //Graphics g = pictureBox1.CreateGraphics();
-                g.DrawLine(new Pen(MainForm.CurColor, MainForm.CurWidth), oldX, oldY, e.X, e.Y);
-                oldX = e.X;
-                oldY = e.Y;
-                pictureBox1.Invalidate();
+                if (e.Button == MouseButtons.Left)
+                {
+                    Graphics g = Graphics.FromImage(bmp);
+                    //Graphics g = pictureBox1.CreateGraphics();
+                    g.DrawLine(new Pen(MainForm.CurColor, MainForm.CurWidth), oldX, oldY, e.X, e.Y);
+                    oldX = e.X;
+                    oldY = e.Y;
+                    pictureBox1.Invalidate();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
