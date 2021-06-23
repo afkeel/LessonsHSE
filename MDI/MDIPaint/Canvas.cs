@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,14 @@ namespace MDIPaint
     {
         private Bitmap bmp;
         private int oldX, oldY;
+        private string pathFileName;
+        public string PathFileName
+        {
+            set
+            {
+                pathFileName = value;
+            }
+        }
         public int PictureBox1Width
         {
             get
@@ -38,29 +47,48 @@ namespace MDIPaint
         public Canvas(string FileName)
         {
             InitializeComponent();
-            bmp = new Bitmap(FileName);            
-            pictureBox1.Width = bmp.Width;
-            pictureBox1.Height = bmp.Height;
-            pictureBox1.Image = bmp;
+            using (var fs = new FileStream(FileName, FileMode.Open))
+            {
+                try
+                {
+                    var tbmp = new Bitmap(fs);
+                    bmp = tbmp;
+                    pictureBox1.Image = bmp;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("There was an error opening the image file.");
+                }
+            }
         }
-        public void Save(string fp)
+        public void Save()
         {
-            var newBitmap = new Bitmap(bmp);
-            bmp.Dispose();
-            newBitmap.Save(fp);
-            bmp = newBitmap;
+            if (pathFileName != null)
+                bmp.Save(pathFileName);
+            else
+                SaveAs();        
         }        
-        public string SaveAs()
+        public void SaveAs()
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.AddExtension = true;
-            dlg.Filter = "Windows Bitmap (*.bmp)|*.bmp| Файлы JPEG (*.jpg)|*.jpg";
-            ImageFormat[] ff = { ImageFormat.Bmp, ImageFormat.Jpeg };
+            dlg.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
             if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                bmp.Save(dlg.FileName, ff[dlg.FilterIndex - 1]);
+            {                
+                switch (dlg.FilterIndex)
+                {
+                    case 1:
+                        bmp.Save(dlg.FileName, ImageFormat.Jpeg);
+                        break;
+                    case 2:
+                        bmp.Save(dlg.FileName, ImageFormat.Bmp);
+                        break;
+                    case 3:
+                        bmp.Save(dlg.FileName, ImageFormat.Gif);
+                        break;
+                }
             }
-            return dlg.FileName;
+            pathFileName = dlg.FileName;
         }
         public int CanvasWidth
         {
@@ -112,7 +140,6 @@ namespace MDIPaint
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

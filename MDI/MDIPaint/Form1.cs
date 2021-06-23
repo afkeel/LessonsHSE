@@ -14,7 +14,6 @@ namespace MDIPaint
     {
         public static Color CurColor = Color.Black;
         public static int CurWidth = 1;
-        public static string pathFileName;
         public MainForm()
         {
             InitializeComponent();
@@ -80,19 +79,21 @@ namespace MDIPaint
             }
             catch
             {
-                MessageBox.Show("Значение должн быть целым числом.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Значение должн быть целым числом.", 
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Windows Bitmap (*.bmp)|*.bmp| Файлы JPEG (*.jpeg, *.jpg)|*.jpeg;*.jpg|Все файлы ()*.*|*.*";
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 Canvas frmChild = new Canvas(dlg.FileName);
                 frmChild.MdiParent = this;
                 frmChild.Show();
-            }
+                frmChild.PathFileName = dlg.FileName;
+            }   
         }
         private void файлToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
         {
@@ -101,14 +102,11 @@ namespace MDIPaint
         }
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (pathFileName != null)
-            { ((Canvas)ActiveMdiChild).Save(pathFileName); }
-            else 
-            { pathFileName = ((Canvas)ActiveMdiChild).SaveAs(); }
+            ((Canvas)ActiveMdiChild).Save();
         }
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pathFileName = ((Canvas)ActiveMdiChild).SaveAs();
+            ((Canvas)ActiveMdiChild).SaveAs();
         }
         private void каскадомToolStripMenuItem_Click(object sender, EventArgs e)
         {
