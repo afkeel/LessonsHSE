@@ -12,11 +12,14 @@ namespace MDIPaint
 {
     public partial class MainForm : Form
     {
-        public static Color CurColor = Color.Black;
-        public static int CurWidth = 1;
+        public static Color CurrentColor { get; set; }
+        public static Tools CurrentTool { get; set; }
+        public static int CurWidth = 1;      
         public MainForm()
         {
             InitializeComponent();
+            CurrentColor = Color.Black;
+            CurrentTool = Tools.Pen;
             txtBrushSize.Text = CurWidth.ToString();
         }
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,21 +58,21 @@ namespace MDIPaint
         }
         private void красныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CurColor = Color.Red;
+            CurrentColor = Color.Red;
         }
         private void синийToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CurColor = Color.Blue;
+            CurrentColor = Color.Blue;
         }
         private void зелёныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CurColor = Color.Green;
+            CurrentColor = Color.Green;
         }
         private void другойToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
-                CurColor = cd.Color;
+                CurrentColor = cd.Color;
         }
         private void txtBrushSize_TextChanged(object sender, EventArgs e)
         {
@@ -123,6 +126,14 @@ namespace MDIPaint
         private void упорядочитьЗначкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.ArrangeIcons);
+        }
+        private void пероToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CurrentTool = Tools.Pen;
+        }
+        private void окружностьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CurrentTool = Tools.Circle;
         }
     }
 }

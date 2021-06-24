@@ -15,6 +15,7 @@ namespace MDIPaint
     public partial class Canvas : Form
     {
         private Bitmap bmp;
+        private Bitmap bmpTemp;
         private int oldX, oldY;
         private string pathFileName;
         private bool canvasChanged = false;
@@ -44,7 +45,12 @@ namespace MDIPaint
             InitializeComponent();
             bmp = new Bitmap(ClientSize.Width, ClientSize.Height);
             pictureBox1.Image = bmp;  
-        }        
+        }
+        public Canvas(Bitmap bmp)
+        {
+            InitializeComponent();
+            this.bmp = bmp;
+        }
         public Canvas(string FileName)
         {
             InitializeComponent();
@@ -54,7 +60,7 @@ namespace MDIPaint
                 {
                     var tbmp = new Bitmap(fs);
                     bmp = tbmp;
-                    
+                   
                 }
                 catch (Exception)
                 {
@@ -144,11 +150,25 @@ namespace MDIPaint
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    Graphics g = Graphics.FromImage(bmp);
+                    var g = Graphics.FromImage(bmp);
                     //Graphics g = pictureBox1.CreateGraphics();
-                    g.DrawLine(new Pen(MainForm.CurColor, MainForm.CurWidth), oldX, oldY, e.X, e.Y);
-                    oldX = e.X;
-                    oldY = e.Y;
+                    var pen = new Pen(MainForm.CurrentColor);
+                    switch (MainForm.CurrentTool)
+                    {
+                        case Tools.Pen:
+                            g.DrawLine(pen, oldX, oldY, e.X, e.Y);
+                            oldX = e.X;
+                            oldY = e.Y;
+                            break;
+                        case Tools.Circle:
+                            bmpTemp = (Bitmap)bmp.Clone();
+                            g = Graphics.FromImage(bmpTemp);
+                            g.DrawEllipse(pen, new Rectangle(oldX, oldY, e.X - oldX, e.Y - oldY));
+                            pictureBox1.Image = bmpTemp;
+                            break;
+                        default:
+                            break;
+                    }
                     pictureBox1.Invalidate();
                     canvasChanged = true;
                 }
@@ -173,6 +193,15 @@ namespace MDIPaint
                 {
                     Save();
                 }
+            }
+        }
+        private void Canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            switch (MainForm.CurrentTool)
+            {
+                case Tools.Circle:
+                    bmp = bmpTemp;
+                    break;
             }
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
