@@ -17,6 +17,7 @@ namespace MDIPaint
         private Bitmap bmp;
         private int oldX, oldY;
         private string pathFileName;
+        private bool canvasChanged = false;
         public string PathFileName
         {
             set
@@ -42,7 +43,7 @@ namespace MDIPaint
         {
             InitializeComponent();
             bmp = new Bitmap(ClientSize.Width, ClientSize.Height);
-            pictureBox1.Image = bmp;       
+            pictureBox1.Image = bmp;  
         }        
         public Canvas(string FileName)
         {
@@ -53,20 +54,32 @@ namespace MDIPaint
                 {
                     var tbmp = new Bitmap(fs);
                     bmp = tbmp;
-                    pictureBox1.Image = bmp;
+                    
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("There was an error opening the image file.");
                 }
             }
+            pictureBox1.Image = bmp;
         }
         public void Save()
         {
             if (pathFileName != null)
-                bmp.Save(pathFileName);
+            {
+                try
+                {
+                    bmp.Save(pathFileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error!");
+                }
+                canvasChanged = false;
+            }  
             else
-                SaveAs();        
+                SaveAs();
+            
         }        
         public void SaveAs()
         {
@@ -89,6 +102,7 @@ namespace MDIPaint
                 }
             }
             pathFileName = dlg.FileName;
+            canvasChanged = false;
         }
         public int CanvasWidth
         {
@@ -136,11 +150,29 @@ namespace MDIPaint
                     oldX = e.X;
                     oldY = e.Y;
                     pictureBox1.Invalidate();
+                    canvasChanged = true;
                 }
             }
             catch (Exception)
             {
                 throw;
+            }
+        }
+        private void Canvas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (canvasChanged)
+            {
+                var result = MessageBox.Show(
+                    "Сохранить изменения в файле?",
+                    ((Canvas)sender).MdiParent.Text,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.DefaultDesktopOnly);
+                if (result == DialogResult.Yes)
+                {
+                    Save();
+                }
             }
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)

@@ -54,6 +54,7 @@ namespace MDIPaint
             this.Controls.Add(this.pictureBox1);
             this.Name = "Canvas";
             this.Text = "Canvas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Canvas_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
