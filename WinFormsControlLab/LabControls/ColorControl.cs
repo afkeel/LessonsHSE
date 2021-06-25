@@ -49,9 +49,9 @@ namespace LabControls
         }
         private void ColorConvertRGB(out int r, out int g, out int b)
         {
-            r = Convert.ToInt32(colorTextBoxR.Color, GlobalVars.Basis);
-            g = Convert.ToInt32(colorTextBoxG.Color, GlobalVars.Basis);
-            b = Convert.ToInt32(colorTextBoxB.Color, GlobalVars.Basis);
+            r = Convert.ToInt32(colorTextBoxR.Color, colorTextBoxR.radioButton);
+            g = Convert.ToInt32(colorTextBoxG.Color, colorTextBoxG.radioButton);
+            b = Convert.ToInt32(colorTextBoxB.Color, colorTextBoxB.radioButton);
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -64,23 +64,21 @@ namespace LabControls
         private void radioButton1_Click(object sender, EventArgs e)
         {
             ColorConvertRGB(out int R, out int G, out int B);
-            GlobalVars.Basis = GlobalVars.Dec;
+            colorTextBoxR.radioButton = 10;
+            colorTextBoxB.radioButton = 10;
+            colorTextBoxG.radioButton = 10;
             colorTextBoxR.Text = R.ToString();
             colorTextBoxG.Text = G.ToString();
             colorTextBoxB.Text = B.ToString();
         }
         private void radioButton2_Click(object sender, EventArgs e)
         {
-            GlobalVars.Basis = GlobalVars.Hex;
+            colorTextBoxR.radioButton = 16;
+            colorTextBoxB.radioButton = 16;
+            colorTextBoxG.radioButton = 16;
             colorTextBoxR.Text = string.Format("{0:X}", int.Parse(colorTextBoxR.Color));
             colorTextBoxG.Text = string.Format("{0:X}", int.Parse(colorTextBoxG.Color));
             colorTextBoxB.Text = string.Format("{0:X}", int.Parse(colorTextBoxB.Color));
         }
-    }
-    public static class GlobalVars
-    {
-        public const int Dec = 10;
-        public const int Hex = 16;
-        public static int Basis = Dec;
     }
 }

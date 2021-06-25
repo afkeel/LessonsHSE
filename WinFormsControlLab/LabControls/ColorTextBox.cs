@@ -13,6 +13,7 @@ namespace LabControls
     public partial class ColorTextBox : TextBox
     {
         private string color;
+        public int radioButton = 10;
         public string Color
         {
             get
@@ -50,9 +51,9 @@ namespace LabControls
         {
             if (Text.Length!=0)
             {
-                if (GlobalVars.Basis == GlobalVars.Hex)
+                if (radioButton == 16)
                 {
-                    int numb = Convert.ToInt32(Text, GlobalVars.Hex);                  
+                    int numb = Convert.ToInt32(Text, 16);                  
                     Color = CheckVal(numb, "FF");
                 }
                 else
@@ -71,7 +72,7 @@ namespace LabControls
         }
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-            if (GlobalVars.Basis == GlobalVars.Hex)
+            if (radioButton == 16)
             {
                 if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
