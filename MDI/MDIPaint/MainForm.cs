@@ -130,10 +130,14 @@ namespace MDIPaint
         private void пероToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CurrentTool = Tools.Pen;
+            пероToolStripMenuItem.Checked = true;
+            окружностьToolStripMenuItem.Checked = false;
         }
         private void окружностьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CurrentTool = Tools.Circle;
+            пероToolStripMenuItem.Checked = false;
+            окружностьToolStripMenuItem.Checked = true;
         }
     }
 }

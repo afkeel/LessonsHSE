@@ -195,7 +195,7 @@ namespace MDIPaint
                 }
             }
         }
-        private void Canvas_MouseUp(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             switch (MainForm.CurrentTool)
             {
@@ -207,7 +207,7 @@ namespace MDIPaint
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             oldX = e.X;
-            oldY = e.Y;
+            oldY = e.Y;          
         } 
     }
 }

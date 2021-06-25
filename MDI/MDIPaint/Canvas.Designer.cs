@@ -43,6 +43,7 @@ namespace MDIPaint
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // Canvas
             // 
@@ -55,7 +56,6 @@ namespace MDIPaint
             this.Name = "Canvas";
             this.Text = "Canvas";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Canvas_FormClosed);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
