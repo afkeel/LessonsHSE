@@ -102,6 +102,7 @@ namespace Snake
                     apple.X = rnd.Next(0, width - 1);
                     apple.Y = rnd.Next(0, height - 1);
                     snake.Lenght++;
+                    infoControl1.PlayerScore = 10;
                 }               
             }
             if (GameOver())
@@ -149,8 +150,9 @@ namespace Snake
         }        
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (timer1.Interval < 11) timer1.Interval = 11;
-            timer1.Interval -= 10;
+            if (timer1.Interval < 21) timer1.Interval = 21;
+            timer1.Interval -= 20;
+            infoControl1.PlayerLvl = 1;
         }
         private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -168,32 +170,33 @@ namespace Snake
         private void button1_Click(object sender, EventArgs e)
         {
             timer1.Enabled = !timer1.Enabled;
-            if (timer1.Enabled){button1.Text = "Pause";}
-            else { button1.Text = "Start"; }           
+            timer2.Enabled = !timer2.Enabled;
+            if (timer1.Enabled) { button1.Text = "Pause"; }
+            else { button1.Text = "Start"; }
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Up:
+                case Keys.W:
                     if (snake.Direct != Snake.Direction.DOWN)
                     {
                         snake.Direct = Snake.Direction.UP;
                     }                   
                     break;
-                case Keys.Down:
+                case Keys.S:
                     if (snake.Direct != Snake.Direction.UP)
                     {
                         snake.Direct = Snake.Direction.DOWN;
                     }
                     break;
-                case Keys.Left:
+                case Keys.A:
                     if (snake.Direct != Snake.Direction.RIGHT)
                     {
                         snake.Direct = Snake.Direction.LEFT;
                     }
                     break;
-                case Keys.Right:
+                case Keys.D:
                     if (snake.Direct != Snake.Direction.LEFT)
                     {
                         snake.Direct = Snake.Direction.RIGHT;

@@ -44,6 +44,7 @@ namespace Snake
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.infoControl1 = new MyControl.InfoControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -139,12 +140,12 @@ namespace Snake
             // 
             // timer2
             // 
-            this.timer2.Interval = 1000;
+            this.timer2.Interval = 10000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(505, 279);
+            this.button1.Location = new System.Drawing.Point(508, 224);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -152,12 +153,23 @@ namespace Snake
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // infoControl1
+            // 
+            this.infoControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.infoControl1.BackColor = System.Drawing.SystemColors.Control;
+            this.infoControl1.Location = new System.Drawing.Point(468, 33);
+            this.infoControl1.Name = "infoControl1";
+            this.infoControl1.PlayerScore = 0;
+            this.infoControl1.Size = new System.Drawing.Size(150, 169);
+            this.infoControl1.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(625, 400);
+            this.Controls.Add(this.infoControl1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
@@ -190,6 +202,7 @@ namespace Snake
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button button1;
+        private MyControl.InfoControl infoControl1;
     }
 }
 
