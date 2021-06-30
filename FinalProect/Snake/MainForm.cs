@@ -63,7 +63,12 @@ namespace Snake
             apple.X = rnd.Next(0, width - 1);
             apple.Y = rnd.Next(0, height - 1);
         }
-        private bool GameOver()
+        private bool GameOver(ref int i, ref int j)
+        {
+            return snake.Point[i].X == snake.Point[j].X 
+                && snake.Point[i].Y == snake.Point[j].Y;
+        }
+        private void CheckSnakeCrash()
         {
             if (snake.Lenght > 4)
             {
@@ -71,14 +76,21 @@ namespace Snake
                 {
                     for (int j = i + 1; j < snake.Lenght; j++)
                     {
-                        if (snake.Point[i].X == snake.Point[j].X && snake.Point[i].Y == snake.Point[j].Y)
+                        if (GameOver(ref i, ref j))
                         {
-                            return true;
+                            var result = MessageBox.Show(
+                                            "Вы проиграли! Начать новую игру?",
+                                            Text,
+                                            MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Information,
+                                            MessageBoxDefaultButton.Button1,
+                                            MessageBoxOptions.DefaultDesktopOnly);
+                            if (result == DialogResult.Yes) { NewGame(); }
+                            else { Application.Exit(); }                           
                         }
                     }
                 }        
             }
-            return false;
         }
         private bool AppleEat()
         {
@@ -86,37 +98,26 @@ namespace Snake
         }
         private void MakeSnake(ref Graphics g)
         {
-            int tempL = snake.Lenght;
-            for (int i = 0; i < tempL; i++)
+            int tempLen = snake.Lenght;
+            for (int i = 0; i < tempLen; i++)
             {
                 if (snake.Point[i].X < 0) snake.Point[i].X += width;
-                if (snake.Point[i].X > width) snake.Point[i].X -= width;
+                if (snake.Point[i].X >= width) snake.Point[i].X -= width;
                 if (snake.Point[i].Y < 0) snake.Point[i].Y += height;
-                if (snake.Point[i].Y > height) snake.Point[i].Y -= height;
+                if (snake.Point[i].Y >= height) snake.Point[i].Y -= height;
                 g.FillEllipse(blackBrush, snake.Point[i].X * 10, snake.Point[i].Y * 10, 10, 10);
                 if(AppleEat())
                 {
                     //WMPLib.WindowsMediaPlayer wmplayer = new WMPLib.WindowsMediaPlayer();
                     //wmplayer.URL = "eat.mp3";
                     //wmplayer.controls.play();
-                    apple.X = rnd.Next(0, width - 1);
-                    apple.Y = rnd.Next(0, height - 1);
+                    apple.X = 0/*rnd.Next(0, width - 1)*/;
+                    apple.Y = 0/*rnd.Next(0, height - 1)*/;
                     snake.Lenght++;
                     infoControl1.PlayerScore = 10;
                 }               
             }
-            if (GameOver())
-            {
-                var result = MessageBox.Show(
-                                "Вы проиграли! Начать новую игру?",
-                                Text,
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Information,
-                                MessageBoxDefaultButton.Button1,
-                                MessageBoxOptions.DefaultDesktopOnly);
-                if (result == DialogResult.Yes) { NewGame(); }
-                else { Application.Exit(); }
-            }
+            CheckSnakeCrash();           
         }
         private void MakeApple(ref Graphics g)
         {
