@@ -22,14 +22,15 @@ namespace Snake
         private Pen blackPen;
         private int width;
         private int height;
+        const int zoom = 10;
         
         public MainForm()
         {            
             InitializeComponent();
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             snake = new Snake();
-            width = pictureBox1.Width/10;
-            height = pictureBox1.Height/10;
+            width = pictureBox1.Width/zoom;
+            height = pictureBox1.Height/zoom;
             snake.Point[0].X = width / 2;
             snake.Point[0].Y = height / 2;
             whiteBrush = new SolidBrush(Color.White);
@@ -46,13 +47,13 @@ namespace Snake
             g.FillRectangle(whiteBrush, 0, 0, pictureBox1.Width, pictureBox1.Height);
             for (int i = 0; i < width; i++)
             {
-                g.DrawLine(grayPen, i * 10, 0, i * 10, height * 10);
+                g.DrawLine(grayPen, i * zoom, 0, i * zoom, height * zoom);
             }
             for (int i = 0; i < height; i++)
             {
-                g.DrawLine(grayPen, 0, i * 10, width * 10, i * 10);
+                g.DrawLine(grayPen, 0, i * zoom, width * zoom, i * zoom);
             }
-            g.DrawRectangle(blackPen, 0, 0, width * 10, height * 10);
+            g.DrawRectangle(blackPen, 0, 0, (width * zoom)-1, (height * zoom)-1);
         }
         private void NewGame()
         {
@@ -62,6 +63,18 @@ namespace Snake
             snake.Point[0].Y = height / 2;
             apple.X = rnd.Next(0, width - 1);
             apple.Y = rnd.Next(0, height - 1);
+        }
+        private void GameOverMsg()
+        {
+            var result = MessageBox.Show(
+                "Вы проиграли! Начать новую игру?",
+                Text,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1,
+                MessageBoxOptions.DefaultDesktopOnly);
+            if (result == DialogResult.Yes) { NewGame(); }
+            else { Application.Exit(); }
         }
         private bool GameOver(ref int i, ref int j)
         {
@@ -77,17 +90,7 @@ namespace Snake
                     for (int j = i + 1; j < snake.Lenght; j++)
                     {
                         if (GameOver(ref i, ref j))
-                        {
-                            var result = MessageBox.Show(
-                                            "Вы проиграли! Начать новую игру?",
-                                            Text,
-                                            MessageBoxButtons.YesNo,
-                                            MessageBoxIcon.Information,
-                                            MessageBoxDefaultButton.Button1,
-                                            MessageBoxOptions.DefaultDesktopOnly);
-                            if (result == DialogResult.Yes) { NewGame(); }
-                            else { Application.Exit(); }                           
-                        }
+                            GameOverMsg();
                     }
                 }        
             }
@@ -105,14 +108,15 @@ namespace Snake
                 if (snake.Point[i].X >= width) snake.Point[i].X -= width;
                 if (snake.Point[i].Y < 0) snake.Point[i].Y += height;
                 if (snake.Point[i].Y >= height) snake.Point[i].Y -= height;
-                g.FillEllipse(blackBrush, snake.Point[i].X * 10, snake.Point[i].Y * 10, 10, 10);
+                g.FillEllipse(blackBrush, 
+                    snake.Point[i].X * zoom, snake.Point[i].Y * zoom, zoom, zoom);
                 if(AppleEat())
                 {
                     //WMPLib.WindowsMediaPlayer wmplayer = new WMPLib.WindowsMediaPlayer();
                     //wmplayer.URL = "eat.mp3";
                     //wmplayer.controls.play();
-                    apple.X = 0/*rnd.Next(0, width - 1)*/;
-                    apple.Y = 0/*rnd.Next(0, height - 1)*/;
+                    apple.X = rnd.Next(0, width - 1);
+                    apple.Y = rnd.Next(0, height - 1);
                     snake.Lenght++;
                     infoControl1.PlayerScore = 10;
                 }               
@@ -121,7 +125,7 @@ namespace Snake
         }
         private void MakeApple(ref Graphics g)
         {
-            g.FillEllipse(greenBrush, apple.X * 10, apple.Y * 10, 10, 10);
+            g.FillEllipse(greenBrush, apple.X * zoom, apple.Y * zoom, zoom, zoom);
         }
         private void MoveSnake()
         {
